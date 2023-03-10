@@ -1,19 +1,25 @@
-// Récupération des pièces depuis le fichier JSON
-const reponse = await fetch('http://localhost:5678/api/works');
-const value = await reponse.json();
-console.log(value);
+showFigures();
+initEventListeners();
 
-function genererFigure(value) {
-    for (let i = 0; i < value.length; i++) {
+// Récupération des pièces depuis le fichier JSON et lance l'affichage
+function showFigures() {
+    fetch('http://localhost:5678/api/works')
+        .then(reponse => reponse.json())
+        .then(value => genererFigures(value));
+}
 
-        const article = value[i];
+function genererFigures(articles) {
+    for (let i = 0; i < articles.length; i++) {
+
+        const article = articles[i];
         // Récupération de l'élément du DOM qui accueillera les fiches
-        const sectionGallery = document.querySelector(".gallery");
+        const sectionGallery = document.getElementsByClassName("gallery");
         // Création d’une balise dédiée à une pièce automobile
         const figureElement = document.createElement("figure");
         // Création des balises 
         const imageElement = document.createElement("img");
         imageElement.src = article.imageUrl;
+        imageElement.alt = article.title;
         const nomElement = document.createElement("figcaption");
         nomElement.innerText = article.title;
 
@@ -23,51 +29,57 @@ function genererFigure(value) {
         figureElement.appendChild(imageElement);
         figureElement.appendChild(nomElement);
     }
-};
+}
 
-genererFigure(value);
-//gestion des filtres
-const boutonAll = document.querySelector(".galleryFilterAll");
 
-boutonAll.addEventListener("click", function () {
+function onBoutonAllClicked() {
     const figureAll = value.filter(function (figvalue) {
         return figvalue.categoryId == 1, 2, 3;
     });
     console.log(figureAll);
     document.querySelector(".gallery").innerHTML = "";
-    genererFigure(figureAll);
+    genererFigures(figureAll);
 
-});
+}
 
-const boutonItem = document.querySelector(".galleryFilterItem");
-
-boutonItem.addEventListener("click", function () {
+function onBoutonItemClicked() {
     const figureItem = value.filter(function (figvalue) {
         return figvalue.categoryId == 1;
     });
     console.log(figureItem);
     document.querySelector(".gallery").innerHTML = "";
-    genererFigure(figureItem);
-});
+    genererFigures(figureItem);
+}
 
-const boutonApt = document.querySelector(".galleryFilterApt");
-
-boutonApt.addEventListener("click", function () {
+function onBoutonAptClicked() {
     const figureApt = value.filter(function (figvalue) {
         return figvalue.categoryId == 2;
     });
     console.log(figureApt);
     document.querySelector(".gallery").innerHTML = "";
-    genererFigure(figureApt);
-});
+    genererFigures(figureApt);
+}
 
-const boutonHotel = document.querySelector(".galleryFilterHotel");
-
-boutonHotel.addEventListener("click", function () {
+function onBoutonHotelCliked() {
     const figureHotel = value.filter(function (figvalue) {
         return figvalue.categoryId == 3;
     });
     console.log(figureHotel);
     document.querySelector(".gallery").innerHTML = "";
-    genererFigure(figureHotel);
-});
+    genererFigures(figureHotel);
+}
+
+function initEventListeners() {
+    //gestion des filtres
+    const boutonAll = document.getElementsByClassName("galleryFilterAll");
+    boutonAll.addEventListener("click", onBoutonAllClicked);
+
+    const boutonItem = document.getElementsByClassName("galleryFilterItem");
+    boutonItem.addEventListener("click", onBoutonItemClicked);
+
+    const boutonApt = document.getElementsByClassName("galleryFilterApt");
+    boutonApt.addEventListener("click", onBoutonAptClicked);
+
+    const boutonHotel = document.getElementsByClassName("galleryFilterHotel");
+    boutonHotel.addEventListener("click", onBoutonHotelCliked);
+}
