@@ -1,11 +1,15 @@
 showFigures();
 initEventListeners();
 
+let articles = [];
 // Récupération des pièces depuis le fichier JSON et lance l'affichage
 function showFigures() {
     fetch('http://localhost:5678/api/works')
         .then(reponse => reponse.json())
-        .then(value => genererFigures(value));
+        .then(value => {
+            articles = value;
+            genererFigures(value);
+        });
 }
 
 function genererFigures(articles) {
@@ -31,55 +35,65 @@ function genererFigures(articles) {
     }
 }
 
-
-function onBoutonAllClicked() {
-    const figureAll = value.filter(function (figvalue) {
-        return figvalue.categoryId == 1, 2, 3;
-    });
+function onBoutonFilterClicked(categories) {
+    const figureAll = articles.filter(article => categories.includes(article.categoryId) )
+    //const figureAll = value.filter(function (figvalue) {
+     //   return figvalue.categoryId == 1, 2, 3;
+ //   });
     console.log(figureAll);
-    document.querySelector(".gallery").innerHTML = "";
+    document.getElementsByClassName("gallery").innerHTML = "";
     genererFigures(figureAll);
 
 }
 
-function onBoutonItemClicked() {
-    const figureItem = value.filter(function (figvalue) {
-        return figvalue.categoryId == 1;
-    });
-    console.log(figureItem);
-    document.querySelector(".gallery").innerHTML = "";
-    genererFigures(figureItem);
-}
+// function onBoutonAllClicked() {
+//     const figureAll = value.filter(function (figvalue) {
+//         return figvalue.categoryId == 1, 2, 3;
+//     });
+//     console.log(figureAll);
+//     document.getElementsByClassName("gallery").innerHTML = "";
+//     genererFigures(figureAll);
 
-function onBoutonAptClicked() {
-    const figureApt = value.filter(function (figvalue) {
-        return figvalue.categoryId == 2;
-    });
-    console.log(figureApt);
-    document.querySelector(".gallery").innerHTML = "";
-    genererFigures(figureApt);
-}
+// }
 
-function onBoutonHotelCliked() {
-    const figureHotel = value.filter(function (figvalue) {
-        return figvalue.categoryId == 3;
-    });
-    console.log(figureHotel);
-    document.querySelector(".gallery").innerHTML = "";
-    genererFigures(figureHotel);
-}
+// function onBoutonItemClicked() {
+//     const figureItem = value.filter(function (figvalue) {
+//         return figvalue.categoryId == 1;
+//     });
+//     console.log(figureItem);
+//     document.getElementsByClassName("gallery").innerHTML = "";
+//     genererFigures(figureItem);
+// }
+
+// function onBoutonAptClicked() {
+//     const figureApt = value.filter(function (figvalue) {
+//         return figvalue.categoryId == 2;
+//     });
+//     console.log(figureApt);
+//     document.getElementsByClassName("gallery").innerHTML = "";
+//     genererFigures(figureApt);
+// }
+
+// function onBoutonHotelCliked() {
+//     const figureHotel = value.filter(function (figvalue) {
+//         return figvalue.categoryId == 3;
+//     });
+//     console.log(figureHotel);
+//     document.getElementsByClassName("gallery").innerHTML = "";
+//     genererFigures(figureHotel);
+// }
 
 function initEventListeners() {
     //gestion des filtres
     const boutonAll = document.getElementsByClassName("galleryFilterAll");
-    boutonAll.addEventListener("click", onBoutonAllClicked);
+    boutonAll.addEventListener("click", onBoutonFilterClicked([1, 2, 3]));
 
     const boutonItem = document.getElementsByClassName("galleryFilterItem");
-    boutonItem.addEventListener("click", onBoutonItemClicked);
+    boutonItem.addEventListener("click", onBoutonFilterClicked([1]));
 
     const boutonApt = document.getElementsByClassName("galleryFilterApt");
-    boutonApt.addEventListener("click", onBoutonAptClicked);
+    boutonApt.addEventListener("click", onBoutonFilterClicked([2]));
 
     const boutonHotel = document.getElementsByClassName("galleryFilterHotel");
-    boutonHotel.addEventListener("click", onBoutonHotelCliked);
+    boutonHotel.addEventListener("click", onBoutonFilterClicked([3]));
 }
