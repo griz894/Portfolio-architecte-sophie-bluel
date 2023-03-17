@@ -1,7 +1,8 @@
+let articles = [];
 showFigures();
 initEventListeners();
 
-let articles = [];
+
 // Récupération des pièces depuis le fichier JSON et lance l'affichage
 function showFigures() {
     fetch('http://localhost:5678/api/works')
@@ -17,7 +18,7 @@ function genererFigures(articles) {
 
         const article = articles[i];
         // Récupération de l'élément du DOM qui accueillera les fiches
-        const sectionGallery = document.getElementsByClassName("gallery");
+        const sectionGallery = document.getElementsByClassName("gallery")[0];
         // Création d’une balise dédiée à une pièce automobile
         const figureElement = document.createElement("figure");
         // Création des balises 
@@ -41,7 +42,7 @@ function onBoutonFilterClicked(categories) {
      //   return figvalue.categoryId == 1, 2, 3;
  //   });
     console.log(figureAll);
-    document.getElementsByClassName("gallery").innerHTML = "";
+    document.getElementsByClassName("gallery")[0].innerHTML = "";
     genererFigures(figureAll);
 
 }
@@ -85,15 +86,15 @@ function onBoutonFilterClicked(categories) {
 
 function initEventListeners() {
     //gestion des filtres
-    const boutonAll = document.getElementsByClassName("galleryFilterAll");
-    boutonAll.addEventListener("click", onBoutonFilterClicked([1, 2, 3]));
+    const boutonAll = document.getElementById("galleryFilterAll");
+    boutonAll.addEventListener("click",() => onBoutonFilterClicked([1, 2, 3]));
 
-    const boutonItem = document.getElementsByClassName("galleryFilterItem");
-    boutonItem.addEventListener("click", onBoutonFilterClicked([1]));
+    const boutonItem = document.getElementById("galleryFilterItem");
+    boutonItem.addEventListener("click",() => onBoutonFilterClicked([1]));
 
-    const boutonApt = document.getElementsByClassName("galleryFilterApt");
-    boutonApt.addEventListener("click", onBoutonFilterClicked([2]));
+    const boutonApt = document.getElementById("galleryFilterApt");
+    boutonApt.addEventListener("click",() => onBoutonFilterClicked([2]));
 
-    const boutonHotel = document.getElementsByClassName("galleryFilterHotel");
-    boutonHotel.addEventListener("click", onBoutonFilterClicked([3]));
+    const boutonHotel = document.getElementById("galleryFilterHotel");
+    boutonHotel.addEventListener("click",() => onBoutonFilterClicked([3]));
 }
