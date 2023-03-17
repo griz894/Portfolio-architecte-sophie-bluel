@@ -20,19 +20,23 @@ let button = form.submit.addEventListener("click", (event) => {
         }),
     })
 
-        .then((response) => response.json())
+        // .then((response) => response.json())
 
         .then((data) => {
             console.log(data);
             window.localStorage.setItem('token', data.token);
             if (data.ok) {
+                console.log(data);
                 location.href = "index.html";
             } else if (!data.ok) {
                 if (data.status === 404) {
+                    console.log(data);
                     alert((data.message = "Non trouvé"));
                 } else if (data.status === 401) {
+                    console.log(data);
                     alert((data.message = "Utilisateur non autorisé"));
                 } else {
+                    console.log(data);
                     alert("Erreur dans l’identifiant ou le mot de passe");
                 }
             }
