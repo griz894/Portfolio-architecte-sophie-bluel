@@ -22,44 +22,26 @@ let button = form.submit.addEventListener("click", (event) => {
 
         // .then((response) => response.json())
 
-        .then((data) => {
-            console.log(data);
-            window.localStorage.setItem('token', data.token);
-            if (data.ok) {
-                console.log(data);
+        .then( async(response) => {
+            // console.log(data);
+            
+            if (response.ok) {
+                const dataContent = await response.json();
+                window.localStorage.setItem('token', dataContent.token);
+                console.log(dataContent);
                 location.href = "index.html";
-            } else if (!data.ok) {
-                if (data.status === 404) {
-                    console.log(data);
-                    alert((data.message = "Non trouvé"));
-                } else if (data.status === 401) {
-                    console.log(data);
-                    alert((data.message = "Utilisateur non autorisé"));
+            } else if (!response.ok) {
+                if (response.status === 404) {
+                    // console.log(data);
+                    alert((response.message = "Non trouvé"));
+                } else if (response.status === 401) {
+                    // console.log(data);
+                    alert((response.message = "Utilisateur non autorisé"));
                 } else {
-                    console.log(data);
+                    // console.log(data);
                     alert("Erreur dans l’identifiant ou le mot de passe");
                 }
             }
         })
 
-
-
-    // .then((data) => {
-    //     console.log(data);
-    //     window.localStorage.setItem('token', data.token);
-    //     // if token == maintoken {
-    //     //     location.href = "index.html";
-    //     // }
-
-    // })
-    // .then ((tokenCheck) => {
-    //     let token = window.localStorage.getItem('token');
-    //     if (token == maintoken){
-    //         location.href = "index.html";
-    //     }
-    // })
-    // .catch((err) => {
-    //     console.log(err);
-    //     alert("Erreur dans l’identifiant ou le mot de passe");
-    // })
 })

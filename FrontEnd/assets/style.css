@@ -223,9 +223,9 @@ li:hover {
 	margin-bottom: 1em;
 }
 
-.gallery figure {
+/* .gallery figure {
 	border: 1px solid black;
-}
+} */
 
 .gallery {
 	width: 100%;
@@ -244,12 +244,19 @@ li:hover {
 }
 
 .galleryFilter button {
-	border-radius: 18px 18px 18px 18px;
+	border-radius: 60px;
 	border: 1px solid #1D6154;
 	background-color: transparent;
+	color: #1D6154;
+	padding: 6px 12px 6px 12px;
+	margin: 4px;
+	font-family: 'Syne';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 16px;
 }
 
-.galleryFilter button:active {
+.galleryFilter button:focus {
 	background-color: #1D6154;
 	color: white;
 }
@@ -258,23 +265,64 @@ li:hover {
 	width: 100%;
 
 }
+
 .loginJs {
 	display: flex;
 	align-items: center;
 	flex-direction: column;
 }
+
+.loginJs h2 {
+	margin-bottom: 30px;
+
+}
+
 .loginForm {
 	display: flex;
 	flex-direction: column;
-}
-.loginForm label {
-	display: flex;
+	align-items: center;
 }
 
+.loginForm label {
+	margin-bottom: 4px;
+	font-family: 'Work Sans';
+	font-weight: 500;
+	font-size: 14px;
+}
+
+.loginForm input {
+	margin-bottom: 30px;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	/* box-shadow: black 0px 4px 14px; */
+	border: none;
+	width: 300px;
+	height: 36px;
+}
+
+
 .loginForm button {
-	border-radius: 18px 18px 18px 18px;
+	border-radius: 60px;
 	color: white;
 	background-color: #1D6154;
+	font-family: 'Syne';
+	width: 160px;
+	padding: 8px;
+	margin-bottom: 14px;
+}
+
+.loginForm a {
+	font-family: 'Work Sans';
+	font-style: normal;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 16px;
+	text-decoration: none;
+	color: #3D3D3D;
+}
+
+nav a {
+	text-decoration: none;
+	color: black;
 }
 
 #contact {
@@ -328,5 +376,131 @@ input[type="submit"] {
 footer nav ul {
 	display: flex;
 	justify-content: flex-end;
-	margin: 2em
+	margin: 2em;
+	/* position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%; */
+}
+
+
+/* admin */
+.adminBar {
+	width: 100%;
+	height: 50px;
+	background-color: black;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0 20px;
+}
+
+.adminBar button {
+	color: white;
+	background-color: transparent;
+	font-family: 'Work Sans';
+	font-size: 16px;
+	font-weight: 400;
+	/* border: 2px solid white; */
+	border: none;
+	border-radius: 60px;
+	padding: 10px 20px;
+	cursor: pointer;
+}
+
+.adminBar button:hover {
+	background-color: white;
+	color: black;
+	font-size: 14px;
+	font-weight: 500;
+}
+
+.adminBar button:active {
+	background-color: white;
+	color: black;
+	font-size: 14px;
+	font-weight: 500;
+}
+
+#portfolio h2 button {
+	background-color: transparent;
+	/* border: 2px solid white; */
+	border: none;
+	border-radius: 60px;
+	padding: 10px 20px;
+	font-size: 14px;
+	font-weight: 400;
+	font-family: 'Work Sans';
+	cursor: pointer;
+}
+
+.modal {
+	display: none;
+	/* masqué par défaut */
+	position: fixed;
+	/* positionnement fixe */
+	z-index: 1;
+	/* niveau d'empilement */
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	/* affiche une barre de défilement si nécessaire */
+	background-color: rgba(0, 0, 0, 0.5);
+	/* couleur de fond semi-transparente */
+}
+
+.modal-content {
+	margin: 10% auto;
+	padding: 20px;
+	width: 80%;
+	max-height: 80%;
+	background-color: #fefefe;
+	border-radius: 5px;
+}
+
+.modal-body {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: flex-start;
+	padding: 20px;
+	height: 500px;
+	/* Ajustez la hauteur en fonction de vos besoins */
+	overflow-y: auto;
+}
+
+.modal-body article {
+	width: calc(33.33% - 10px);
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+.modal-body figure {
+	margin: 0;
+	padding: 0;
+}
+
+.modal-body img {
+	width: 100%;
+	max-height: 150px;
+	/* Ajustez la hauteur en fonction de vos besoins */
+	object-fit: cover;
+}
+
+.modal-body figcaption {
+	font-size: 16px;
+	margin-top: 10px;
+	text-align: center;
+}
+
+.modal-body button {
+	display: block;
+	margin: 10px auto 0;
+}
+
+
+.close-button {
+	float: right;
 }
