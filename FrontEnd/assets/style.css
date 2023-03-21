@@ -445,62 +445,128 @@ footer nav ul {
 	top: 0;
 	width: 100%;
 	height: 100%;
-	overflow: auto;
-	/* affiche une barre de défilement si nécessaire */
 	background-color: rgba(0, 0, 0, 0.5);
 	/* couleur de fond semi-transparente */
 }
 
-.modal-content {
+.modalContent {
 	margin: 10% auto;
 	padding: 20px;
-	width: 80%;
+	width: 60%;
 	max-height: 80%;
 	background-color: #fefefe;
 	border-radius: 5px;
+	display: flex;
+	flex-direction: column;
 }
 
-.modal-body {
+.modalHeader {
+	display: flex;
+	justify-content: center;
+}
+
+.modalHeader h3 {
+	font-family: 'Work Sans';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 26px;
+}
+
+.modalBody {
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-between;
-	align-items: flex-start;
 	padding: 20px;
-	height: 500px;
-	/* Ajustez la hauteur en fonction de vos besoins */
 	overflow-y: auto;
+	margin: auto 10%;
+	justify-content: space-between;
 }
 
-.modal-body article {
+.modalBody article {
 	width: calc(33.33% - 10px);
-	margin-bottom: 20px;
+	margin: 6px;
 	text-align: center;
+	max-width: 80px;
+	position: relative;
 }
 
-.modal-body figure {
+.modalBody figure {
 	margin: 0;
 	padding: 0;
 }
 
-.modal-body img {
+.modalBody article img {
 	width: 100%;
-	max-height: 150px;
+	max-height: 104px;
+	max-width: 78px;
 	/* Ajustez la hauteur en fonction de vos besoins */
 	object-fit: cover;
 }
 
-.modal-body figcaption {
+.modalBody figcaption {
 	font-size: 16px;
 	margin-top: 10px;
 	text-align: center;
 }
 
-.modal-body button {
+.modalBody button {
 	display: block;
-	margin: 10px auto 0;
+
 }
 
+.editWorkBtn {
+	border: none;
+	background-color: transparent;
+	font-family: 'Work Sans';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 12px;
+	padding: 0;
+}
 
-.close-button {
-	float: right;
+.deleteWorkBtn {
+	position: absolute;
+	top: 0;
+	right: 0;
+	border: none;
+    margin-top: 4px;
+    margin-right: 4px;
+    padding: 2px;
+    border-radius: 2px;
+	background-color: black;
+}
+.fa-trash-can {
+	color: white;
+}
+
+.closeButton {
+	font-size: 28px;
+	font-weight: bold;
+	color: black;
+	background-color: transparent;
+	border: none;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.modalFooter {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.addPhotoButton {
+	color: white;
+	background-color: #1D6154;
+	border-radius: 60px;
+	border: none;
+	margin: 10px;
+	padding: 10px 30px 10px 30px;
+}
+
+.removeGalleryButton {
+	background-color: transparent;
+	color: #D65353;
+	border: none;
+	margin: 10px;
+	padding: 10px 30px 10px 30px;
 }

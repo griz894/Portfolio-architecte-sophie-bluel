@@ -38,6 +38,7 @@ function addAdminBar() {
     return adminBar;
 }
 
+//mode edition ON
 function addFigEdit() {
     const projets = document.querySelector("#portfolio h2");
     const FigEditBtn = document.createElement("button");
@@ -47,6 +48,7 @@ function addFigEdit() {
     // Appel de la fonction createModal quand le bouton "Modifier" est créé
     createModal();
 }
+//mode edition OFF
 function removeFigEdit() {
     const projets = document.querySelector("#portfolio h2");
     const FigEditBtn = projets.querySelector("button");
@@ -62,44 +64,78 @@ function createModal() {
 
     // Ajout du contenu à la modal
     const modalContent = document.createElement("div");
-    modalContent.classList.add("modal-content");
+    modalContent.classList.add("modalContent");
     const modalBody = document.createElement('div');
-    modalBody.classList.add('modal-body');
+    modalBody.classList.add('modalBody');
+
     modalContent.appendChild(modalBody);
     modal.appendChild(modalContent);
 
+
     // Ajout du titre "Galerie photo"
-const modalHeader = document.createElement("div");
-modalHeader.classList.add("modal-header");
-const title = document.createElement("h3");
-title.textContent = "Galerie photo";
-modalHeader.appendChild(title);
-modalContent.appendChild(modalHeader);
+    const modalHeader = document.createElement("div");
+    modalHeader.classList.add("modalHeader");
+    const title = document.createElement("h3");
+    title.textContent = "Galerie photo";
+    modalHeader.appendChild(title);
+    // modalContent.prepend(modalHeader);
+    modalContent.insertBefore(modalHeader, modalBody);
 
     // Ajout d'une croix pour fermer la modal
     const closeButton = document.createElement("button");
-    closeButton.classList.add("close-button");
+    closeButton.classList.add("closeButton");
     closeButton.innerHTML = "&times;";
-    modalContent.appendChild(closeButton);
+    // modalContent.appendChild(closeButton);
+    // modalContent.insertBefore(closeButton, modalContent.firstChild);
+    modalContent.insertBefore(closeButton, modalHeader);
+
+    // Ajout du footer et des deux boutons
+    const modalFooter = document.createElement('div');
+    modalFooter.classList.add('modalFooter');
+    modalContent.appendChild(modalFooter);
+    const addPhotoButton = document.createElement("button");
+    addPhotoButton.classList.add("addPhotoButton");
+    addPhotoButton.innerHTML = "Ajouter une photo";
+    const removeGalleryButton = document.createElement("button");
+    removeGalleryButton.classList.add("removeGalleryButton");
+    removeGalleryButton.innerHTML = "Supprimer la galerie";
+    modalFooter.appendChild(addPhotoButton);
+    modalFooter.appendChild(removeGalleryButton);
+
 
     // Ajout d'un événement click sur le bouton "Fermer"
     closeButton.addEventListener("click", function () {
         modal.style.display = "none";
     });
 
+
+
+
+
+
     // Ajout d'un événement click sur le bouton "Modifier"
     const figEditBtn = document.querySelector("#portfolio h2 button");
     figEditBtn.addEventListener("click", function () {
+        clearModalContent(); 
         modal.style.display = "block";
-        displayArticlesInModal(); // call the new function to display the articles
+        displayArticlesInModal();
     });
 
     // Ajout de la modal au body
     document.body.appendChild(modal);
 }
 
+//fonction qui permet de vider la modal 
+function clearModalContent() {
+    const modalBody = document.querySelector('.modalBody');
+    while (modalBody.firstChild) {
+        modalBody.removeChild(modalBody.firstChild);
+    }
+}
+
+//fonction qui appel les acticles dans la modal
 function displayArticlesInModal() {
-    const modalBody = document.querySelector('.modal-body');
+    const modalBody = document.querySelector('.modalBody');
 
     fetch('http://localhost:5678/api/works')
         .then(response => response.json())
@@ -108,22 +144,32 @@ function displayArticlesInModal() {
                 const article = document.createElement('article');
                 const figure = document.createElement('figure');
                 const image = document.createElement('img');
-                const figcaption = document.createElement('figcaption');
+                // const figcaption = document.createElement('figcaption');
                 const h3 = document.createElement('h3');
-                const deleteBtn = document.createElement('button');
+                const deleteWorkBtn = document.createElement('button');
+                deleteWorkBtn.classList.add("deleteWorkBtn");
+                const editWorkBtn = document.createElement('button');
+                editWorkBtn.classList.add("editWorkBtn");
 
                 image.src = work.imageUrl;
-                figcaption.textContent = work.title;
-                deleteBtn.textContent = 'Supprimer';
-                deleteBtn.addEventListener('click', () => {
-                    deleteWork(work.id);
+                // figcaption.textContent = work.title;
+                deleteWorkBtn.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
+                deleteWorkBtn.addEventListener('click', () => {
+                    deleteWorkBtn(work.id);
                     article.remove();
                 });
 
+                editWorkBtn.textContent = 'Éditer';
+                editWorkBtn.addEventListener('click', () => {
+
+                });
+
+
                 figure.appendChild(image);
-                figure.appendChild(figcaption);
+                // figure.appendChild(figcaption);
                 article.appendChild(figure);
-                article.appendChild(deleteBtn);
+                article.appendChild(deleteWorkBtn);
+                article.appendChild(editWorkBtn);
 
                 modalBody.appendChild(article);
             });
