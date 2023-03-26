@@ -308,6 +308,7 @@ li:hover {
 	width: 160px;
 	padding: 8px;
 	margin-bottom: 14px;
+	border: none;
 }
 
 .loginForm a {
@@ -452,10 +453,10 @@ footer nav ul {
 .modalContent {
 	margin: 10% auto;
 	padding: 20px;
-	width: 60%;
+	max-width: 600px;
 	max-height: 80%;
 	background-color: #fefefe;
-	border-radius: 5px;
+	border-radius: 10px;
 	display: flex;
 	flex-direction: column;
 }
@@ -472,13 +473,25 @@ footer nav ul {
 	font-size: 26px;
 }
 
+.modalEditHeader {
+	display: flex;
+	justify-content: center;
+}
+
+.modalEditHeader h3 {
+	font-family: 'Work Sans';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 26px;
+}
+
 .modalBody {
 	display: flex;
 	flex-wrap: wrap;
 	padding: 20px;
 	overflow-y: auto;
 	margin: auto 10%;
-	justify-content: space-between;
+	justify-content: center;
 }
 
 .modalBody article {
@@ -528,12 +541,13 @@ footer nav ul {
 	top: 0;
 	right: 0;
 	border: none;
-    margin-top: 4px;
-    margin-right: 4px;
-    padding: 2px;
-    border-radius: 2px;
+	margin-top: 4px;
+	margin-right: 4px;
+	padding: 2px;
+	border-radius: 2px;
 	background-color: black;
 }
+
 .fa-trash-can {
 	color: white;
 }
@@ -549,9 +563,19 @@ footer nav ul {
 }
 
 .modalFooter {
+	margin: 0px 5% 0px 5%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	border-top: 1px solid #B3B3B3;
+}
+
+.modalEditFooter {
+	margin: 0px 5% 0px 5%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-top: 1px solid #B3B3B3;
 }
 
 .addPhotoButton {
@@ -569,4 +593,98 @@ footer nav ul {
 	border: none;
 	margin: 10px;
 	padding: 10px 30px 10px 30px;
+}
+
+.validerButton {
+	color: white;
+	background-color: #A7A7A7;
+	border-radius: 60px;
+	border: none;
+	margin: 10px;
+	padding: 10px 30px 10px 30px;
+}
+
+.addPhotoForm {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.addPhotoDiv {
+	background-color: #E8F1F7;
+    max-width: 264px;
+    width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 20px;
+	margin: 10px 10px 30px 10px;
+}
+
+.addPhotoForm label {
+	margin-bottom: 4px;
+	font-family: 'Work Sans';
+	font-weight: 500;
+	font-size: 14px;
+}
+
+.addPhotoForm input {
+	margin-bottom: 30px;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	/* box-shadow: black 0px 4px 14px; */
+	border: none;
+	width: 300px;
+	height: 36px;
+	color: #6C6C6C;
+}
+
+.addPhotoForm select {
+	margin-bottom: 30px;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	/* box-shadow: black 0px 4px 14px; */
+	border: none;
+	width: 300px;
+	height: 36px;
+	color: #6C6C6C;
+	padding: 6px;
+}
+
+.addPhotoForm div {
+	display: flex;
+	flex-direction: column;
+}
+
+
+.addPhotoForm button {
+	border-radius: 60px;
+	color: white;
+	border: none;
+	font-size: 14px;
+	background-color: #1D6154;
+	font-family: 'Syne';
+	padding: 8px;
+	margin-bottom: 4px;
+}
+
+.addPhotoInfo {
+	font-family: 'Work Sans';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 10px;
+}
+
+.addPhotoDiv i {
+	color:#B9C5CC;
+	font-size: 54px;
+}
+.returnButton {
+	font-size: 20px;
+    font-weight: bold;
+    color: black;
+    background-color: transparent;
+    border: none;
+}
+.modalButton {
+	display: flex;
+	justify-content: space-between;
 }
