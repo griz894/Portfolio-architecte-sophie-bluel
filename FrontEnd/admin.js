@@ -254,7 +254,8 @@ function displayArticlesInModal() {
                 editWorkBtn.textContent = 'éditer';
                 editWorkBtn.addEventListener('click', () => {
                     clearModal();
-                    displayEditModal();
+                    console.log(work.id);
+                    displayEditModal(work.id);
                 });
 
                 figure.appendChild(image);
@@ -273,7 +274,7 @@ function displayArticlesInModal() {
 
 function displayEditModal() {
     // Création de la modal
-
+console.log(id)
     const modalEdit = document.querySelector('.modal');
     modalEdit.style.display = 'block';
     // Ajout du contenu à la modal
@@ -352,7 +353,6 @@ function displayEditModal() {
 
 
     // ajout d'un événement click sur le bouton retour, pour recharger la modal précédente.
-    // const returnButton = document.querySelector('.returnButton');
     returnButton.addEventListener("click", function () {
         // Appel de la fonction createModal quand le bouton "Modifier" est cliqué
         let modal = document.querySelector('.modal');
