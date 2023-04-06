@@ -223,9 +223,6 @@ li:hover {
 	margin-bottom: 1em;
 }
 
-/* .gallery figure {
-	border: 1px solid black;
-} */
 
 .gallery {
 	width: 100%;
@@ -263,8 +260,9 @@ li:hover {
 
 .gallery img {
 	width: 100%;
-	max-height: 490px;
-
+	height: 490px;
+	object-fit: cover;
+    border-radius: 4px;
 }
 
 .loginJs {
@@ -413,15 +411,15 @@ footer nav ul {
 .adminBar button:hover {
 	background-color: white;
 	color: black;
-	font-size: 14px;
-	font-weight: 500;
+	font-size: 16px;
+	font-weight: 400;
 }
 
 .adminBar button:active {
 	background-color: white;
 	color: black;
-	font-size: 14px;
-	font-weight: 500;
+	font-size: 16px;
+	font-weight: 400;
 }
 
 #portfolio h2 button {
@@ -491,7 +489,7 @@ footer nav ul {
 	flex-wrap: wrap;
 	padding: 20px;
 	overflow-y: auto;
-	margin: auto 10%;
+	margin: auto 6%;
 	justify-content: center;
 }
 
@@ -509,10 +507,8 @@ footer nav ul {
 }
 
 .modalBody article img {
-	width: 100%;
-	max-height: 104px;
+	height: 104px;
 	max-width: 78px;
-	/* Ajustez la hauteur en fonction de vos besoins */
 	object-fit: cover;
 }
 
